@@ -1,0 +1,16 @@
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed(data-target="#navbar-top" data-toggle="collapse" type="button")
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to "Socify", root_url, class: "navbar-brand"
+    #navbar-top.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li= link_to 'Sign out', destroy_user_session_path, method: :delete
+        - else
+          %li= link_to 'Sign up', new_user_registration_path
+          %li= link_to 'Sign in', user_session_path
