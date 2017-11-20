@@ -1,0 +1,5 @@
+example_id                               | status  | run_time        |
+---------------------------------------- | ------- | --------------- |
+./spec/features/spec_for_sign_up.rb[1:1] | failed  | 0.88611 seconds |
+./spec/models/post_spec.rb[1:1]          | pending | 0.00001 seconds |
+./spec/models/user_spec.rb[1:1]          | passed  | 0.03172 seconds |

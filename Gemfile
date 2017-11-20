@@ -18,10 +18,18 @@ gem 'haml', '~> 5.0', '>= 5.0.4'
 gem 'omniauth-facebook'
 
 group :development, :test do
+  gem "database_cleaner"    
   gem 'pry-byebug'
-  gem 'rspec', '~> 3.7'
   gem 'rspec-rails', '~> 3.7', '>= 3.7.1'
 end
+
+group :test do
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem 'shoulda-matchers', '~> 3.0.0'
+  gem 'factory_girl_rails'
+  gem 'faker'
+end  
 
 group :development do
   gem 'web-console', '>= 3.3.0'
