@@ -16,19 +16,20 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'haml', '~> 5.0', '>= 5.0.4'
 gem 'omniauth-facebook'
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
 group :development, :test do
   gem "database_cleaner"    
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.7', '>= 3.7.1'
+  gem 'shoulda-matchers', '~> 3.0.0'
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
-  gem 'shoulda-matchers', '~> 3.0.0'
-  gem 'factory_girl_rails'
-  gem 'faker'
 end  
 
 group :development do
