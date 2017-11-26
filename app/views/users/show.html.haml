@@ -1,2 +1,9 @@
 = @user.name
 , #{@user.email}
+, #{@user.surname}
+, #{@user.sex}
+, #{@user.date_of_birth}
+, #{@user.city}
+, #{@user.phone_number}
+
+= link_to "Edit", edit_user_path(@user)
