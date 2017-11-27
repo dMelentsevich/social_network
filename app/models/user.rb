@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :posts
+  has_many :posts, dependent: :destroy
   validates :email, presence: true
   validates :password, presence: true, on: :create, length: { in: 6..72, wrong_lenght: "Password lenght should be in 3-45 characters" }
   devise :database_authenticatable, :registerable, :confirmable,

@@ -1,9 +1,35 @@
-= @user.name
-, #{@user.email}
-, #{@user.surname}
-, #{@user.sex}
-, #{@user.date_of_birth}
-, #{@user.city}
-, #{@user.phone_number}
+%p
+  %b Name:
+  = @user.name
+
+%p
+  %b Surname:
+  = @user.surname
+
+%p
+  %b Email:
+  = @user.email
+
+%p
+  %b Sex:
+  = @user.sex
+
+%p
+  %b Date of birth:
+  = @user.date_of_birth
+
+%p
+  %b City:
+  = @user.city
+
+%p
+  %b Phone number:
+  = @user.phone_number        
 
 = link_to "Edit", edit_user_path(@user)
+= render partial: 'posts/post_form', locals: { post: @user.posts.build }
+.col-md-8
+  %h3
+    Posts (#{@user.posts.count})
+  %ol.posts
+    = render @user.posts
