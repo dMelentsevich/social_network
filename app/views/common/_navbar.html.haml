@@ -3,10 +3,7 @@
     .navbar-header
       %button.navbar-toggle.collapsed(data-target="#navbar-top" data-toggle="collapse" type="button")
         %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to "Socify", root_url, class: "navbar-brand"
+      = link_to "Home", root_url, class: "navbar-brand"
     #navbar-top.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?

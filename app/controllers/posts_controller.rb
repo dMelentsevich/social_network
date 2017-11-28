@@ -3,8 +3,8 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      flash[:success] = "Micropost created!"
-      redirect_to user_path(@user)
+      flash[:success] = "Post created!"
+      redirect_to user_path(@post.user)
     else
       render 'users/show'
     end

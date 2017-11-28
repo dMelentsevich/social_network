@@ -11,5 +11,10 @@
     - if notice
       %p.alert.alert-success= notice
     - if alert
-      %p.alert.alert-danger= alert   
-    = yield
+      %p.alert.alert-danger= alert  
+    .container-fluid
+      .row
+        .col-md-2
+        .col-md-8
+          = yield
+        .col-md-2

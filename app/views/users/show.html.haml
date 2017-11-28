@@ -1,35 +1,25 @@
-%p
-  %b Name:
-  = @user.name
-
-%p
-  %b Surname:
-  = @user.surname
-
-%p
-  %b Email:
-  = @user.email
-
-%p
-  %b Sex:
-  = @user.sex
-
-%p
-  %b Date of birth:
-  = @user.date_of_birth
-
-%p
-  %b City:
-  = @user.city
-
-%p
-  %b Phone number:
-  = @user.phone_number        
-
-= link_to "Edit", edit_user_path(@user)
-= render partial: 'posts/post_form', locals: { post: @user.posts.build }
-.col-md-8
-  %h3
-    Posts (#{@user.posts.count})
-  %ol.posts
-    = render @user.posts
+.row
+  %aside.col-md-4
+    %section
+      %h1.col-md-1
+        = @user.name
+        = @user.surname
+    %address  
+      %strong User's information:
+      %br
+      = @user.sex
+      %br/
+      = @user.email
+      %br/
+      = @user.phone_number
+      %br/
+      = @user.date_of_birth
+      %br/
+      = @user.city
+    = link_to "Edit", edit_user_path(@user)
+  .col-md-4.offset-md-4
+    %h3
+      Posts (#{@user.posts.count})
+    %ol.posts
+      = render @user.posts
+      = render partial: 'posts/post_form', locals: { post: @user.posts.build }
