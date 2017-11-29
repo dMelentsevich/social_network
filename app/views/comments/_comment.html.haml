@@ -1,0 +1,6 @@
+%div
+  = link_to comment.post.user.name, user_path(comment.post.user)
+  = link_to 'Delete', post_comment_path(comment.post, comment), method: :delete, confirm: 'Are you sure?'
+  = comment.body
+  = comment.created_at
+%hr

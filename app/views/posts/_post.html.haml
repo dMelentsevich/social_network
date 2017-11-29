@@ -1,6 +1,12 @@
 %li(id="post-#{post.id}")
-  %span.user= link_to post.user.name, post.user
-  %span.content
+  %span.user
+    = link_to post.user.name, post.user
+    = link_to 'Delete post', post_path(post), method: :delete, confirm: 'Are you sure?'
+  %span.body
     = post.body
   %span.timestamp 
-    Posted !!!
+    = post.created_at
+  %hr
+.comments
+  = render post.comments
+  = render partial: 'comments/comment_form', locals: { comment: Comment.new, url: post_comments_path(post) } 
