@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!
 
   def create
-    @post = current_user.posts.build(post_params)
-    if @post.save
+    @post = Post.new(post_options)
+    if @post.valid?
+      @post.save
       redirect_to user_path(@post.user), notice: 'The post was created'
     else
+      @user = current_user
       render 'users/show'
     end
   end
@@ -18,6 +20,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def post_options
+    post_params.merge({ user: current_user })
+  end
 
   def post_params
     params.require(:post).permit(:body)

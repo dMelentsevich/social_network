@@ -21,6 +21,6 @@
     %h3
       Posts (#{@user.posts.count})
     - if current_user.id == @user.id
-      = render partial: 'posts/post_form', locals: { post: Post.new }
+      = render partial: 'posts/post_form', locals: { post: @post }
     %ol.posts
       = render @user.posts
