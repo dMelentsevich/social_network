@@ -1,12 +1,19 @@
 %li(id="post-#{post.id}")
   %span.user
     = link_to post.user.name, post.user
-    = link_to 'Delete post', post_path(post), method: :delete, confirm: 'Are you sure?'
   %span.body
     = post.body
   %span.timestamp 
-    = post.created_at
+    posted
+    = time_ago_in_words(post.created_at)
+    ago
+    = link_to 'Delete post', post_path(post), method: :delete, confirm: 'Are you sure?'
   %hr
-.comments
-  = render post.comments
-  = render partial: 'comments/comment_form', locals: { comment: Comment.new, url: post_comments_path(post) } 
+  %p
+    = link_to "Comments", "#", class: "comments-link", data: { post_id: "#{post.id}" }
+
+%section.comments-section{ data: { post_id: "#{post.id}" } }
+  %ol#comments
+    = render post.comments
+    = render partial: 'comments/comment_form', locals: { comment: Comment.new, url: post_comments_path(post) } 
+
