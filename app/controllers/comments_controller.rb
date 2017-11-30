@@ -4,16 +4,25 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.build(comment_options)
     if @comment.save
-      redirect_to user_path(@post.user), notice: 'You have added comment'
+      respond_to do |format|
+        format.html { redirect_to user_path(@post.user), notice: 'You have added comment' }
+        format.js { @new_comment = Comment.new }
+      end
     else
-      render 'users/show' 
+      respond_to do |format|
+        format.html { render 'users/show' }
+        format.js { @new_comment = @comment }
+      end
     end
   end
   
   def destroy
     @comment = Comment.find(params[:id])
     if @comment.destroy
-      redirect_to user_path(@post.user), notice: 'The comment was deleted'
+      respond_to do |format|
+        format.html { redirect_to user_path(@post.user), notice: 'The comment was deleted' }
+        format.js
+      end
     end
   end
   

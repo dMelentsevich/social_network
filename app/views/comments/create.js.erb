@@ -1,0 +1,4 @@
+$('.post[data-post-id="' + <%= @post.id %> + '"] .comment_form').html("<%= escape_javascript(render partial: 'comments/comment_form', locals: { comment: @new_comment, url: post_comments_path(@post) }) %>");
+<% if @comment.id.present? %>
+  $("<%= escape_javascript(render @comment) %>").prependTo('.post[data-post-id="' + <%= @post.id %> + '"] .comments');
+<% end %>
