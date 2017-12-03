@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
   validates :email, presence: true
   validates :password, presence: true, on: :create, length: { in: 6..72, wrong_lenght: "Password lenght should be in 3-45 characters" }
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  devise :omniauthable, :omniauth_providers => [:facebook]
+  devise :omniauthable, omniauth_providers: %i[facebook]
   enum sex: %i[male female]
 
   def self.new_with_session(params, session)

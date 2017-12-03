@@ -14,8 +14,11 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    if @post.destroy
-      redirect_to user_path(@post.user), notice: 'The post was deleted'
+
+    if @post.user == current_user && @post.destroy
+      redirect_to user_path(current_user), notice: 'The post was deleted'
+    else
+      redirect_to user_path(@post.user), alert: 'You can not delete this post' 
     end
   end
 

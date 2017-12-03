@@ -1,8 +1,15 @@
 FactoryGirl.define do
   factory :user do
-    confirmed_at Time.zone.now
-    name "Test User"
-    email "test@example.com"
-    password "please123"
+    name 'User'
+    surname 'ByPass'
+    sequence(:email) { |n| "person#{n}@example.com" }
+    password "test123123"
+    confirmed_at Time.now
+
+    trait :with_posts do
+      after(:create) do |instance|
+        create_list :post, 5, user: instance
+      end
+    end
   end
 end
