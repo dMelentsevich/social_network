@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: %i[facebook]
   enum sex: %i[male female]
+  enum role: %i[user admin]
 
   def self.new_with_session(params, session)
     super.tap do |user|

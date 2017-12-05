@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post, only: %i[create destroy]
+  before_action :set_comment, only: %i[destroy]
+  before_action :pundit_authorize
 
   def create
     @comment = @post.comments.build(comment_options)
@@ -32,11 +35,19 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
   end
 
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
   def comment_options
     comment_params.merge({ user: current_user })
   end
 
   def comment_params
     params.require(:comment).permit(:body)
+  end
+
+  def pundit_authorize
+    authorize @comment || Comment
   end
 end

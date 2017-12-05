@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: %i[index show]
+  before_action :authenticate_user!
+  before_action :set_user, only: %i[update edit]
+  before_action :pundit_authorize
 
   def index
     @users = User.paginate(page: params[:page])
@@ -9,19 +11,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @post = Post.new
     @posts = @user.posts.paginate(page: params[:page])
-  end
-
-  def new
-  	@user = User.new
-  end
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      # Handle a successful save.
-    else
-      render 'new'
-    end
   end
 
   def edit
@@ -39,7 +28,15 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:name, :surname, :sex, :date_of_birth, :city, :phone_number)
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def pundit_authorize
+    authorize @user || User
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :surname, :sex, :date_of_birth, :city, :phone_number)
+  end
 end

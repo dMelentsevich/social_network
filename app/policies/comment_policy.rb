@@ -1,0 +1,2 @@
+class CommentPolicy < BasePolicy
+end

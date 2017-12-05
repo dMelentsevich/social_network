@@ -1,16 +1,5 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe CommentsController, type: :controller do
-#   let!(:user) { create(:user) }
-#   let!(:post) { create(:post, user_id: user.id)}
-
-#   describe 'POST #create' do
-
-#     it 'should not allow comment #create for guests' do
-#       post :create, params: { }
-#     #   expect(response).to be_redirect
-#     #   expect(response).to redirect_to(user_path(user)
-#     end
-#   end  
-
-# end
+RSpec.describe CommentsController, type: :controller do
+  it { should use_before_action(:pundit_authorize) }
+end
