@@ -4,6 +4,7 @@
       %h1.col-md-1
         = @user.name
         = @user.surname
+        = image_tag @user.avatar.url(:thumb) if @user.avatar?
     %address  
       %strong User's information:
       %br

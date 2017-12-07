@@ -6,6 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: %i[facebook]
+  mount_uploader :avatar, AvatarUploader
   enum sex: %i[male female]
   enum role: %i[user admin]
 
